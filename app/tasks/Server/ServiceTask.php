@@ -4,9 +4,9 @@ namespace App\Tasks\Server;
 
 use App\Biz\Service\BasicService;
 use App\Common\Logger\Rpc\LoggerHandler;
+use App\Core\Support\Server\RpcServer;
 use App\Tasks\Task;
 use Xin\Phalcon\Cli\Traits\Input;
-use Xin\Swoole\Rpc\Server;
 
 class ServiceTask extends Task
 {
@@ -14,7 +14,7 @@ class ServiceTask extends Task
 
     public function mainAction()
     {
-        $server = new Server();
+        $server = new RpcServer();
         $pid = di('config')->application->pidsDir . 'service.pid';
         $rpc = di('config')->rpc;
         $daemonize = $this->option('daemonize', $rpc->daemonize);

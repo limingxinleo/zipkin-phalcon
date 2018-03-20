@@ -8,19 +8,45 @@
 // +----------------------------------------------------------------------
 namespace App\Controllers;
 
+use App\Core\Support\Recording\Span;
+use Zipkin\DefaultTracing;
+use Zipkin\Tracer;
+
 abstract class Controller extends \Phalcon\Mvc\Controller
 {
+    /** @var Tracer */
+    public $tracer;
+
+    /** @var \Zipkin\Span */
+    public $trace;
+
     public function initialize()
     {
     }
 
     public function beforeExecuteRoute()
     {
-        // 在每一个找到的动作前执行
+        /** @var DefaultTracing $tracing */
+        $tracing = di('zipkinTracer');
+        $this->tracer = $tracing->getTracer();
+        $spanName = $this->router->getRewriteUri();
+
+        $this->trace = $this->tracer->newTrace();
+        $this->trace->setName($spanName);
+        $this->trace->start();
+
+        $context = $this->trace->getContext();
+
+        $span = Span::getInstance();
+        $span->traceId = $context->getTraceId();
+        $span->parentSpanId = $context->getParentId();
+        $span->spanId = $context->getSpanId();
+        $span->sampled = $context->isSampled();
     }
 
     public function afterExecuteRoute()
     {
-        // 在每一个找到的动作后执行
+        $this->trace->finish();
+        $this->tracer->flush();
     }
 }

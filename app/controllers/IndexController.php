@@ -8,8 +8,10 @@
 // +----------------------------------------------------------------------
 namespace App\Controllers;
 
+use App\Common\Clients\Rpc\BasicClient;
 use App\Common\Enums\ErrorCode;
 use App\Common\Exceptions\BizException;
+use App\Core\Support\Recording\Span;
 use App\Core\System;
 use App\Utils\Response;
 
@@ -37,5 +39,13 @@ class IndexController extends Controller
     public function exceptionAction()
     {
         throw new BizException(ErrorCode::$ENUM_SYSTEM_ERROR);
+    }
+
+    public function zipkinAction()
+    {
+        $version = BasicClient::getInstance()->version();
+        return Response::success([
+            'version' => $version,
+        ]);
     }
 }

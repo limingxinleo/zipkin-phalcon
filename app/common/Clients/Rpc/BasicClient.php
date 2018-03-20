@@ -8,14 +8,14 @@
 // +----------------------------------------------------------------------
 namespace App\Common\Clients\Rpc;
 
-use Xin\Swoole\Rpc\Client\Client;
+use App\Core\Support\Client\RpcClient;
 
 /**
  * Class BasicClient
  * @package App\Common\Clients\Rpc
  * @method version
  */
-class BasicClient extends Client
+class BasicClient extends RpcClient
 {
     public function __construct()
     {
