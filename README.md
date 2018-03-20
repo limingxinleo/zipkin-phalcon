@@ -19,7 +19,7 @@
 - [Phalcon基础开发框架](https://github.com/limingxinleo/basic-phalcon)
 - [Zipkin开发版本](https://github.com/limingxinleo/zipkin-phalcon)
 
-### Zipkin测试
+### 安装说明
 - 安装Zipkin服务
 ~~~
 docker run --name zipkin -d -p 9411:9411 openzipkin/zipkin 
