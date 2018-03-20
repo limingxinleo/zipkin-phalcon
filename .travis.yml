@@ -48,6 +48,8 @@ install:
   - phpenv config-add $TRAVIS_BUILD_DIR/tests/_ci/phalcon.ini
   # We use this file as our custom PHP config
   - phpenv config-add $TRAVIS_BUILD_DIR/tests/_ci/ci.ini
+  # 安装Zipkin
+  - docker pull openzipkin/zipkin
   # 安装项目
   - composer self-update
   - cd $TRAVIS_BUILD_DIR
@@ -58,6 +60,7 @@ install:
 before_script:
   # 启动PHP
   - cd $TRAVIS_BUILD_DIR
+  - docker run --name zipkin -d -p 9411:9411 openzipkin/zipkin
   - php run server:service --daemonize
   - php -S localhost:8080 -t public &> /dev/null &
   - php run queue &> /dev/null &
