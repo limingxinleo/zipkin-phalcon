@@ -46,6 +46,7 @@ class IndexController extends Controller
         $version = BasicClient::getInstance()->version();
         return Response::success([
             'version' => $version,
+            'zipkin' => Span::getInstance()
         ]);
     }
 }
