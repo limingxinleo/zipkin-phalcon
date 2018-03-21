@@ -22,7 +22,9 @@ class ZipkinLoggerReporter implements JobInterface
 
     public function handle()
     {
-        $http = new Http();
+        $config = di('config')->zipkin->options->toArray();
+        dump($config);
+        $http = new Http(null, $config);
         $http->report($this->span);
     }
 }
