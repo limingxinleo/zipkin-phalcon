@@ -21,12 +21,14 @@ class ServiceTask extends Task
         $host = $this->option('host', $rpc->host);
         $port = $this->option('port', $rpc->port);
 
-        $server->setHandler('test', BasicService::getInstance());
+        $server->setHandler('test', BasicService::class);
         $server->setLoggerHandler(LoggerHandler::getInstance());
         $server->serve($host, $port, [
             'pid_file' => $pid,
             'daemonize' => $daemonize,
             'max_request' => 500,
+            'open_eof_check' => true,
+            'package_eof' => "\r\n",
         ]);
     }
 }

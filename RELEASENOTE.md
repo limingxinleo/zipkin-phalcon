@@ -5,6 +5,36 @@
 - [ ] php单元测试
 
 ### Added
+
+### Changed
+
+### Fixed
+
+### Deleted
+
+## [2.3.0]
+### Checked
+- [x] php单元测试
+
+### Added
+
+### Changed
+* 修改目录结构
+* 修改RedisUtil@incr & incrBy 增加超时时间的方法
+* 消息队列模块使用独立x-swoole-queue模块
+
+### Fixed
+* 修改SQL日志记录有误的BUG
+
+### Deleted
+* 删除App\Utils\Redis\Commands
+* 删除JobInterface
+
+## [2.2.10]
+### Checked
+- [x] php单元测试
+
+### Added
 * 增加Request服务
 * 增加锁目录
 * 增加PID目录
@@ -19,8 +49,6 @@
 
 ### Fixed
 * 修改Mongodb用户名密码为空时无法使用的BUG
-
-### Deleted
 
 ## [2.2.5]
 ### Checked

@@ -68,3 +68,4 @@ before_script:
 script:
   - cd $TRAVIS_BUILD_DIR
   - ./vendor/bin/phpunit
+  - ./vendor/bin/codecept
