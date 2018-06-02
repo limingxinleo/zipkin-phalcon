@@ -317,5 +317,18 @@ return new Config(
             'port' => env('RPC_PORT', 11521),
             'daemonize' => env('RPC_DAEMONIZE', false),
         ],
+
+        /*
+        |--------------------------------------------------------------------------
+        | Zipkin配置
+        |--------------------------------------------------------------------------
+        |
+        |
+        */
+        'zipkin' => [
+            'options' => [
+                'endpoint_url' => env('ZIPKIN_ENDPOINT_URL', 'http://localhost:9411/api/v2/spans')
+            ],
+        ],
     ]
 );
