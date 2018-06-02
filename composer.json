@@ -1,6 +1,6 @@
 {
-    "name": "limingxinleo/phalcon-basic-project",
-    "description": "a basic version for limingxinleo/phalcon-project",
+    "name": "limingxinleo/phalcon-zipkin-project",
+    "description": "a zipkin version for limingxinleo/phalcon-project",
     "type": "project",
     "license": "MIT",
     "authors": [

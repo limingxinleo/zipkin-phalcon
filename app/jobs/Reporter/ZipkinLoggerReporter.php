@@ -8,7 +8,7 @@
 // +----------------------------------------------------------------------
 namespace App\Jobs\Reporter;
 
-use App\Jobs\Contract\JobInterface;
+use Xin\Swoole\Queue\JobInterface;
 use Zipkin\Reporters\Http;
 
 class ZipkinLoggerReporter implements JobInterface
