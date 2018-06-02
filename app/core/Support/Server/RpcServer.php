@@ -15,6 +15,7 @@ use Xin\Swoole\Rpc\Server;
 use Zipkin\DefaultTracing;
 use Zipkin\Propagation\TraceContext;
 use swoole_server;
+use ReflectionClass;
 
 class RpcServer extends Server
 {
@@ -53,7 +54,10 @@ class RpcServer extends Server
                 throw new RpcException('The service handler is not exist!');
             }
 
-            $result = $this->services[$service]->$method(...$arguments);
+            $ref = new ReflectionClass($this->services[$service]);
+            $handler = $ref->newInstance($server, $fd, $reactor_id);
+            $result = $handler->$method(...$arguments);
+
             $response = $this->success($result);
             $server->send($fd, json_encode($response));
 
